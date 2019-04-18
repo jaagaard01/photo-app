@@ -1,4 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
+import styled from "styled-components/native";
+import {Button} from 'react-native-elements';
+import Login from '../LogInComponents/Login'
+
+
+
 import {
   Image,
   Platform,
@@ -7,33 +13,26 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ImageBackground,
 } from 'react-native';
-import { WebBrowser } from 'expo';
 
-import { MonoText } from '../components/StyledText';
 
-const TotalView= Styled.View `
-`
 
-const FormView = Styled.form `
-
+const ScreenView = styled.View `
 `
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+ 
+
   render() {
   return ( 
-      <TotalView>
-          <FormView>
-             <label name={"Username"}>User Name</label>
-             <input type="text" placeholder="User Name:"></input>
-             <label name={'password'}>Password</label>
-             <input type="password" placeholder="enter password" required></input>
-             <button></button>
-          </FormView>
-      </TotalView>
+    <ScreenView style={{flex: 1}}>
+      <Login></Login>
+
+    </ScreenView>
   ) 
 }
 }
