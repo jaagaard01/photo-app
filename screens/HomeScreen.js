@@ -1,188 +1,230 @@
+//// This will be renamed to home page upon completion.
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableHighlight, View, Dimensions, ImageBackground } from 'react-native';
+import { createStackNavigator, createAppContainer, Navigation } from 'react-navigation';
+import { Button } from 'react-native-elements';
 import { WebBrowser } from 'expo';
+import styled from 'styled-components/native'; /// import styled view managment
 
 import { MonoText } from '../components/StyledText';
 
+import SettingsScreen from './SettingsScreen';
+// const screenWidth = Dimensions.get('window').width;
+
+const MainNavigator = createStackNavigator({
+  Settings: SettingsScreen
+
+});
+
+export const App = createAppContainer(MainNavigator);
+
+const TotalView = styled.View`
+height: 95%
+
+`;
+
+
+
+const MenuView = styled.View`
+
+justifyContent: space-between;
+alignItems: center
+`;
+const ButtonView = styled.View`
+alignItems: center
+`;
+
+
+const TopHalfView = styled.View`
+height: 55%;
+`;
+
+const BottomHalfView = styled.View`
+height: 45%;
+width: 95%;
+color: #FAFAFA;
+justifyContent: space-evenly;
+marginLeft: 10
+
+`;
 export default class HomeScreen extends React.Component {
+
+
   static navigationOptions = {
     header: null,
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
+      <TotalView>
+        <ImageBackground title="Homepage Logo"
+          source={require('../constants/HomePageLogo.png')}
+          style={{}} /// Insert Terniary to upload employee image Here
+        ><TopHalfView>
+            <Image title="Profile Picture"
+              source={require('../assets/images/Temporary.png')}
+              style={{ height: 100, width: 100, borderRadius: 50, alignSelf: "center", marginVertical: 100, }} /// Insert Terniary to upload employee image Here
             />
-          </View>
 
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
+          </TopHalfView>
+        </ImageBackground>
+        <BottomHalfView style={{ justifyContent: 'space-between', }}>
 
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
+          <MenuView style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
+            <ButtonView>
+              <TouchableHighlight
+                onPress={() =>
+                  navigate("CalendarScreen")
+                }
+                className="home-screen buttons" buttonStyle={{ height: 70, width: 70, borderRadius: 35 }} >
+                <Image title="Schedule" source={require('../assets/images/Schedule.png')} />
+              </TouchableHighlight>
+              <Text style={{ alignSelf: 'center' }}>Schedule</Text>
+            </ButtonView>
+            <ButtonView>
+              <TouchableHighlight
+                onPress={() =>
+                  navigate("ShootScreen")
+                } className="home-screen buttons" buttonStyle={{ height: 70, width: 70, borderRadius: 35 }}>
+                <Image title="Shoot Now" source={require('../assets/images/ShootNow.png')} /></TouchableHighlight>
+              <Text style={{ alignSelf: 'center' }}>Shoot Now</Text>
+            </ButtonView>
+            <ButtonView>
 
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
+              <TouchableHighlight
+                onPress={() =>
+                  navigate("EditScreen")
+                }
+                className="home-screen buttons" buttonStyle={{ height: 50, width: 50, borderRadius: 25 }}
+              >
+                <Image title="Edit/Submit" source={require('../assets/images/EditSubmit.png')} /></TouchableHighlight>
+              <Text style={{ alignSelf: 'center' }}>Edit / Submit</Text>
+            </ButtonView>
+          </MenuView>
+          <MenuView style={{ flexDirection: "row", justifyContent: "space-evenly" }} textStyle={{ textAlign: "center", flex: "wrap" }}>
+            <ButtonView>
+              <TouchableHighlight
+                onPress={() =>
+                  navigate("ConnectCameraScreen")
+                }
+                className="home-screen buttons" buttonStyle={{ height: 70, width: 70, borderRadius: 35 }} >
+                <Image title="Connect Camera" source={require('../assets/images/ConnectCamera.png')} /></TouchableHighlight>
+              <Text style={{ alignSelf: 'center' }}>Connect Camera</Text>
+            </ButtonView>
+            <ButtonView>
+              <TouchableHighlight
+                onPress={() =>
+                  navigate("MyShootsScreen")
+                }
+                className="home-screen buttons" buttonStyle={{ height: 70, width: 70, borderRadius: 35 }}>
+                <Image title="My Photo Shoots" source={require('../assets/images/PhotoShoots.png')} /></TouchableHighlight>
+              <Text style={{ alignSelf: 'center' }}>My Photo Shoots</Text>
+            </ButtonView>
+            <ButtonView>
+              <TouchableHighlight
+                onPress={() =>
+                  navigate("Settings")
+                } className="home-screen buttons" buttonStyle={{ height: 70, width: 70, borderRadius: 35 }}>
+                <Image title="Settings" source={require('../assets/images/Settings.png')} /></TouchableHighlight>
+              <Text style={{ alignSelf: 'center' }}>Settings</Text>
+            </ButtonView>
+          </MenuView>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
-      </View>
+        </BottomHalfView>
+      </TotalView>
     );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
 
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
 
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//   },
+//   developmentModeText: {
+//     marginBottom: 20,
+//     color: 'rgba(0,0,0,0.4)',
+//     fontSize: 14,
+//     lineHeight: 19,
+//     textAlign: 'center',
+//   },
+//   contentContainer: {
+//     paddingTop: 35,
+//   },
+//   welcomeContainer: {
+//     alignItems: 'center',
+//     marginTop: 10,
+//     marginBottom: 20,
+//   },
+//   welcomeImage: {
+//     width: 100,
+//     height: 70,
+//     resizeMode: 'contain',
+//     marginTop: 3,
+//     marginLeft: -10,
+//   },
+//   getStartedContainer: {
+//     alignItems: 'center',
+//     marginHorizontal: 50,
+//   },
+//   homeScreenFilename: {
+//     marginVertical: 7,
+//   },
+//   codeHighlightText: {
+//     color: 'rgba(96,100,109, 0.8)',
+//   },
+//   codeHighlightContainer: {
+//     backgroundColor: 'rgba(0,0,0,0.05)',
+//     borderRadius: 3,
+//     paddingHorizontal: 4,
+//   },
+//   getStartedText: {
+//     fontSize: 17,
+//     color: 'rgba(96,100,109, 1)',
+//     lineHeight: 24,
+//     textAlign: 'center',
+//   },
+//   tabBarInfoContainer: {
+//     position: 'absolute',
+//     bottom: 0,
+//     left: 0,
+//     right: 0,
+//     ...Platform.select({
+//       ios: {
+//         shadowColor: 'black',
+//         shadowOffset: { height: -3 },
+//         shadowOpacity: 0.1,
+//         shadowRadius: 3,
+//       },
+//       android: {
+//         elevation: 20,
+//       },
+//     }),
+//     alignItems: 'center',
+//     backgroundColor: '#fbfbfb',
+//     paddingVertical: 20,
+//   },
+//   tabBarInfoText: {
+//     fontSize: 17,
+//     color: 'rgba(96,100,109, 1)',
+//     textAlign: 'center',
+//   },
+//   navigationFilename: {
+//     marginTop: 5,
+//   },
+//   helpContainer: {
+//     marginTop: 15,
+//     alignItems: 'center',
+//   },
+//   helpLink: {
+//     paddingVertical: 15,
+//   },
+//   helpLinkText: {
+//     fontSize: 14,
+//     color: '#2e78b7',
+//   },
+// });
