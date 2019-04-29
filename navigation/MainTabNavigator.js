@@ -7,6 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LoginScreen from '../screens/LoginScreen';
+import ImagePreview from '../screens/ImagePreview'
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -39,6 +41,21 @@ LoginStack.navigationOptions = {
     />
   ),
 };
+
+const ImagePreviewStack = createStackNavigator({
+  imagePreview: ImagePreview,
+});
+
+ImagePreviewStack.navigationOptions = {
+  tabBarLabel: 'Image Preview',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+    />
+  ),
+};
+
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
@@ -73,4 +90,5 @@ export default createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   LoginStack,
+  ImagePreviewStack,
 });
