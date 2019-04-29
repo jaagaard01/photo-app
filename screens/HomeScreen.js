@@ -9,10 +9,12 @@ import styled from 'styled-components/native'; /// import styled view managment
 import { MonoText } from '../components/StyledText';
 
 import SettingsScreen from './SettingsScreen';
+import ShootOptions from './ShootOptions';
 // const screenWidth = Dimensions.get('window').width;
 
 const MainNavigator = createStackNavigator({
-  Settings: SettingsScreen
+  Settings: SettingsScreen,
+  ShootNow: ShootOptions,
 
 });
 
@@ -86,9 +88,9 @@ export default class HomeScreen extends React.Component {
             <ButtonView>
               <TouchableHighlight
                 onPress={() =>
-                  navigate("ShootScreen")
+                  navigate("ShootNow")
                 } className="home-screen buttons" buttonStyle={{ height: 70, width: 70, borderRadius: 35 }}>
-                <Image title="Shoot Now" source={require('../assets/images/ShootNow.png')} /></TouchableHighlight>
+                <Image title="ShootNow" source={require('../assets/images/ShootNow.png')} /></TouchableHighlight>
               <Text style={{ alignSelf: 'center' }}>Shoot Now</Text>
             </ButtonView>
             <ButtonView>
