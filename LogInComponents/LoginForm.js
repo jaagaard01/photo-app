@@ -26,15 +26,27 @@ export default class LoginForm extends Component {
         style ={styles.input}
         ref= {(input) => this.passwordInput = input}>
         </TextInput>
-        <Button
-        onPress={()=>{console.log('hello')}}
-        title='Log In'
-        style={styles.buttonContainer}/>
-      
-        <Button 
-        onPress={()=>{console.log('hello')}}
-        title='sign up'
-        style={styles.buttonContainer}/>
+        <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.buttonText}><Text>Login</Text></TouchableOpacity>
+        </View>
+        <View style={{height: 35,
+          width: 240,
+          paddingVertical: 50,
+          justifyContent: 'center',}}>
+        <TouchableOpacity style={{ alignItems: 'center',
+          color: 'black',
+          fontWeight: '700', 
+          backgroundColor: 'white',
+          height: 30,
+          width: 340,
+          borderRadius:6,
+          paddingHorizontal: 10, 
+          paddingVertical: 5,
+          fontFamily: 'Cochin'}}>
+          <Text>Sign Up</Text>
+        </TouchableOpacity>
+        </View>
+        
       
       </KeyboardAvoidingView> 
     )
@@ -63,13 +75,16 @@ const styles = StyleSheet.create({
     buttonContainer:{
       height: 35,
       width: 240,
+      paddingVertical: 50,
+      justifyContent: 'center',
+      
       
       
         
         
     },
     buttonText: {
-        textAlign: 'center',
+        alignItems: 'center',
         color: '#FFFFFF',
         fontWeight: '700', 
         backgroundColor: '#FF6761',
