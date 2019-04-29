@@ -1,7 +1,9 @@
 {
   "hostType": "lan",
   "lanType": "ip",
+
   "dev": true,
   "minify": false,
   "urlRandomness": "zi-s3r"
+
 }

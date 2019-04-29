@@ -16,7 +16,12 @@
     "react": "16.5.0",
     "react-native": "^0.57.8",
     "react-native-elements": "^1.1.0",
+
+    "react-native-radio-buttons-group": "^1.0.7",
+    "react-native-table-component": "^1.2.0",
+
     "react-native-linear-gradient": "^2.5.4",
+
     "react-navigation": "^3.8.1",
     "styled-components": "^4.2.0"
   },

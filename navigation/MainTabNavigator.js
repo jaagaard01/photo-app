@@ -7,7 +7,11 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LoginScreen from '../screens/LoginScreen';
+
+import ShootOptions from '../screens/ShootOptions';
+
 import ImagePreview from '../screens/ImagePreview'
+
 
 
 const HomeStack = createStackNavigator({
@@ -71,6 +75,13 @@ LinksStack.navigationOptions = {
   ),
 };
 
+const ShootOptionsStack = createStackNavigator({
+  ShootNow: ShootOptions,
+});
+
+ShootOptionsStack.navigationOptions = {
+ 
+};
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
@@ -90,5 +101,9 @@ export default createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   LoginStack,
+
+  ShootOptionsStack,
+
   ImagePreviewStack,
 });
+

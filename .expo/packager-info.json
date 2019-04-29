@@ -1,5 +1,8 @@
 {
+  "packagerPort": null,
+  "packagerPid": null,
   "devToolsPort": 19002,
+
   "expoServerPort": 19000,
   "packagerPort": 19001,
   "packagerPid": 34532,
@@ -7,4 +10,5 @@
   "packagerNgrokUrl": "https://packager.zi-s3r.anonymous.photo-app.exp.direct",
   "ngrokPid": 34541,
   "webpackServerPort": null
+
 }
